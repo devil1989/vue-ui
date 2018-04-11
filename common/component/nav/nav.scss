@@ -1,0 +1,225 @@
+/*
+1.最后一层不需要前置的加减符号（虚线和位置都得改）
+2.最后一层元素相互之间不用竖线连在一起，但是中间层需要
+*/
+/*变量（class变量和属性值变量）+嵌套+import导入*/
+.content-wrapper{
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	font-size: 0.7rem;
+	height:100%;
+}
+
+h1{
+	padding: 0.6rem;
+	border-bottom: 0.1rem solid #F4F4F4;
+	font-size:0.8rem;
+}
+
+.unactive{
+	color:#ababab;
+}
+.page-wrapper{
+	height:100%;
+	width:100%;
+	/*padding:0.6rem;*/
+	border:1px solid #000;
+	overflow: hidden;
+}
+.school-content-list{
+	overflow: hidden;
+	height: 100%;
+}
+
+/******左侧公共菜单栏目 start******/
+
+	/******左侧公共菜单栏目 common start******/
+	.fold-item>ul.school-content-item{
+		display: none;
+	}
+
+	.internet-school-nav .have-no-child .fold-icon{/*没有子元素，直接隐藏加减号*/
+		visibility: hidden;
+		/*margin-left: 0.3rem;*/
+	}
+
+	.have-no-child .school-nav{
+		padding-right:0rem;
+	}
+
+	/*隐藏加减符号的时候，需要拉伸对应的虚线*/
+	/*.have-no-child和last-child同层级*/
+	/*最后一层或者虽然不是最后一层但是折叠了，就需要把上下的虚线隐藏*/
+	.have-no-child .dashline-absolute-bottom,.have-no-child .dashline-absolute-top,.fold-item>.school-nav>.dashline-absolute-top,.fold-item>.school-nav>.dashline-absolute-bottom{
+		display: none;
+	}
+	/*没有子元素的时候，横向的虚线得延长*/
+	.have-no-child .dashline-absolute-left{
+		width: 1.4rem;
+	}
+
+	.school-nav{/*通用的头部title*/
+		position: relative;
+		overflow: hidden;
+		margin-bottom: 1px;
+	}
+	.school-nav-sub1>.school-content-item>li>.school-nav>.dashline-absolute-left{//最外层不需要左边的虚线
+		display:none;
+	}
+	.line-start>.school-nav>.dashline-absolute-top,.line-end>.school-nav.have-no-child>.dashline-absolute-bottom{//开始元素不需要向上虚线；底部如果没有子元素不需向下虚线
+		display:none;
+	}
+
+	.unfold-item>.school-nav>.reduce-icon{
+		font-size:1rem;
+		line-height: 0.5rem;
+	}
+	
+	.unfold-item>.school-nav>.reduce-icon,.fold-item>.school-nav>.plus-icon{
+		display:block;
+		
+	}
+
+	.fold-item>.school-nav>.reduce-icon,.unfold-item>.school-nav>.plus-icon{
+		display:none !important;
+	}
+
+	.internet-school-nav-item{
+		margin-bottom: 1px;
+	}
+	.school-content-item{/*包含某个节点的所有子元素的标签ul，如果某个节点没有下个兄弟节点，那他的侧边虚线会超出*/
+		border-left:1px #AEAEAE dashed;
+	}
+
+	/*折叠虚线 start*/
+	/*line-start和line-end是li元素层级*/
+	.dashline-absolute-left{
+		display: block;
+		height:0.7rem;
+		width: 0.7rem;
+		border-bottom:1px #AEAEAE dashed;
+		position: absolute;
+		top: 0.35rem;/*0.7除以2*/
+		left: 0rem;
+		z-index: 100;
+	}
+	.dashline-absolute-top{
+		display: block;
+		height:0.7rem;
+		width: 0.7rem;
+		border-left:1px #AEAEAE dashed;
+		position: absolute;
+		top: 0rem;
+		left: 0.95rem;
+		z-index: 100;
+	}
+	.dashline-absolute-bottom{
+		display: block;
+		height:0.7rem;
+		width: 0.7rem;
+		border-left:1px #AEAEAE dashed;
+		position: absolute;
+		bottom: 0rem;
+		left: 0.95rem;
+		z-index: 100;
+	}
+	.space-indent-1{/*缩进最小单位距离*/
+		margin-left:0.95rem;
+	}
+	/*折叠虚线 end*/
+
+	.internet-school-nav{
+		padding-right:1rem;
+		background-color: #F7F7F7;
+		float:left;
+		overflow: hidden;
+		margin-left: 0.6rem;
+		margin-top: 2px;
+	}
+	.internet-school-nav h2{
+		height: 2.5rem;
+		line-height: 2.5rem;
+		padding-left:0.5rem;
+	}
+	.internet-school-nav .school-conten-title{
+		float:left;
+	}
+	.internet-school-nav .hide{
+		display:none;
+	}
+	.internet-school-nav .float-left{
+		float:left;
+	}
+
+	.internet-school-nav .current-nav{
+		
+		background-color: #DCDCDC;
+	}
+	
+	.internet-school-nav .school-content-item{
+		overflow: hidden;
+	}
+	.internet-school-nav .fold-icon{
+		cursor: pointer;
+		margin: 0.65rem 0.3rem 0.6rem 0.6rem;
+		display: block;
+		height:0.7rem;
+		width: 0.7rem;
+		border:1px solid #AEAEAE;
+		line-height: 0.7rem;
+		text-align: center;
+		color: #AEAEAE;
+		font-size:0.7rem;
+	}
+
+	.school-nav h3,.school-nav h4,.school-nav h5,.school-nav h6{
+		display: block;
+		height: 2rem;
+		line-height: 2.0rem;
+	}
+
+	/******左侧公共菜单栏目 common end******/
+	
+	/******左侧公共菜单栏目 具体业务 start******/
+	.school-nav-sub1{
+		float:left;
+		height: 100%;
+		width: auto;
+		background-color: #F7F7F7;
+		margin-bottom:0rem;
+		margin-top: 0.1rem;
+	}
+	.school-nav-sub1>ul.school-content-item{
+		border-left:none;
+	}
+	/******左侧公共菜单栏目 具体业务 end******/
+
+
+/******左侧公共菜单栏目 end******/
+
+/*.tagIcon:after {
+	display:block;
+	float:right;
+	height:0.6rem;
+	width:0.6rem;
+	margin-top:0.7rem;
+	line-height:2rem;
+	content:"";
+	border:0.1rem solid #939395;
+	border-radius:0.3rem;
+	margin-right:0.3rem;
+}
+
+.current-nav:after {
+	display:block;
+	float:right;
+	height:0px;
+	width:0px;
+	margin-top:0.8rem;
+	line-height:2rem;
+	content:"";
+	border:0.3rem solid #DCDCDC;
+	border-right:0.4rem solid #ffffff;
+	background-color:#DCDCDC;
+}*/

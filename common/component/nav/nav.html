@@ -1,0 +1,101 @@
+<!-- 这个只是用来查看nav的html结构，因为js中看起来不方便 -->
+<div class="school-nav school-nav-sub1"><!-- 业务域层级 -->
+	<h2>网校<i class="direction-icon"></i></h2>
+	<ul class="school-content-item">
+		<li class="line-start "><!-- 机构层级 -->
+			<div class="school-nav current-nav ">
+				<i class="dashline-absolute-top"></i>	
+				<i class="dashline-absolute-bottom"></i>
+				<i class="dashline-absolute-left"></i>
+				<span class="reduce-icon float-left fold-icon">-</span>
+				<span class="float-left fold-icon">+</span>
+				<h3 class="float-left">机构-沿途</h3>
+			</div>
+			<ul class="school-content-item space-indent-1 ">
+				<li class="line-start"><!-- 业务单元层级 如果业务单元需要折叠，需要给这li元素添加calss：fold-item -->
+					<div class="school-nav ">
+						<i class="dashline-absolute-top"></i>	
+						<i class="dashline-absolute-bottom"></i>
+						<i class="dashline-absolute-left"></i>
+						<span class="reduce-icon float-left fold-icon">-</span>
+						<span class="plus-icon float-left fold-icon">+</span>
+						<h3 class="float-left">业务单元-A</h3>
+					</div>
+					<ul class="school-content-item space-indent-1">
+						<li class="fold-item"><!-- 业务单元层级 -->
+							<div class="school-nav ">
+								<i class="dashline-absolute-top"></i>	
+								<i class="dashline-absolute-bottom"></i>
+								<i class="dashline-absolute-left"></i>
+								<span class="reduce-icon float-left fold-icon">-</span>
+								<span class="plus-icon float-left fold-icon">+</span>
+								<h3 class="float-left">职能单元-A</h3>
+							</div>
+						</li>
+						<li><!-- 业务单元层级 -->
+							<div class="school-nav have-no-child">
+								<i class="dashline-absolute-top"></i>	
+								<i class="dashline-absolute-left"></i>
+								<i class="dashline-absolute-bottom"></i>
+								<span class="reduce-icon float-left fold-icon">-</span>
+								<span class="plus-icon float-left fold-icon">+</span>
+								<h3 class="float-left">职能单元-B</h3>
+							</div>
+							<ul class="">
+							</ul>
+						</li>
+						<li class="line-end"><!-- 业务单元层级 -->
+							<div class="school-nav have-no-child last-child">
+								<i class="dashline-absolute-top"></i>	
+								<i class="dashline-absolute-left"></i>
+								<i class="dashline-absolute-bottom"></i>
+								<span class="reduce-icon float-left fold-icon">-</span>
+								<span class="plus-icon float-left fold-icon">+</span>
+								<h3 class="float-left">职能单元-C</h3>
+							</div>
+							<ul class="">
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="fold-item"><!-- 业务单元层级 -->
+					<div class="school-nav ">
+						<i class="dashline-absolute-top"></i>	
+						<i class="dashline-absolute-left"></i>
+						<i class="dashline-absolute-bottom"></i>
+						<span class="reduce-icon float-left fold-icon">-</span>
+						<span class="plus-icon float-left fold-icon">+</span>
+						<h3 class="float-left">业务单元-B</h3>
+					</div>
+					<ul class="">
+					</ul>
+				</li>
+				<li class="fold-item line-end"><!-- 业务单元层级 -->
+					<div class="school-nav ">
+						<i class="dashline-absolute-top"></i>	
+						<i class="dashline-absolute-left"></i>
+						<i class="dashline-absolute-bottom"></i>
+						<span class="reduce-icon float-left fold-icon">-</span>
+						<span class="plus-icon float-left fold-icon">+</span>
+						<h3 class="float-left">业务单元-C</h3>
+					</div>
+					<ul class="">
+					</ul>
+				</li>
+			</ul>
+		</li>
+
+
+
+
+		<li class="line-end"><!-- 机构层级 -->
+			<div class="school-nav">
+				<i class="dashline-absolute-top"></i>
+				<i class="dashline-absolute-bottom"></i>
+				<span class="reduce-icon float-left fold-icon">-</span>
+				<span class="float-left fold-icon">+</span>
+				<h3 class="float-left">机构-2</h3>
+			</div>
+		</li>
+	</ul>
+</div>

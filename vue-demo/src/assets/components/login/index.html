@@ -1,0 +1,7 @@
+<div class="login-box" >
+	<h1>{{options.title||"登录页面"}}</h1>
+	<!-- :options指的是input元素自己的自定义属性，引号里面的，例如"options"，获取的是父vue元素或者父vue组件的data，couputed属性 -->
+	<input class="unit-input" type="text" name=""   placeholder="请输入用户名" :value="options.userName" />
+	<input class="unit-input" type="password" name="" placeholder="请输入密码" :value="options.password" />
+	<span class="js_login ui-login-btn" @click="loginPage" >{{options.loginTxt||"登录"}}</span>{{options.age}}
+</div>

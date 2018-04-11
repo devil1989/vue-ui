@@ -1,0 +1,166 @@
+vue建议使用指南：详细api地址: https://cn.vuejs.org/v2/guide/list.html
+
+//api地址：https://cn.vuejs.org/v2/guide/instance.html
+
+/******Vue 使用简易指南******/
+
+// //自定义指令，表单指令先不介绍，不怎么用
+// html原样输出：v-html
+// 属性绑定：v-bind:(可以直接简写成：) ; 如何传入变量（<span v-bind:class="'ui-'+pop"></span>）//其中ui-在引号内，是字符串，pop是变量  
+// 事件绑定：v-on:（可以直接简写成@）；如何绑定事件（<span @click.stop="'ui-'+pop"></span>），//.stop表示事件修饰符，
+//                 //事件修饰符
+//                     .stop：stopPropagation
+//                     .prevent：preventDefault
+//                     .capture：只当事件在该元素本身（而不是子元素）触发时执行
+//                     .self
+//                     .once：
+
+//                 //按键修饰符
+//                 <span @keyup.13="getname"></span>，只有在keycode为13的时候才执行，键盘每一个按键都有对应的keycode，
+//                 按键修饰符也支持键名的人性化书写，例如
+//                     .enter
+//                     .tab
+//                     .delete (捕获 "删除" 和 "退格" 键)
+//                     .esc
+//                     .space
+//                     .up
+//                     .down
+//                     .left
+//                     .right
+//                     .ctrl
+//                     .alt
+//                     .shift
+//                     .meta
+
+// vue调用options说明
+// new Vue({
+//     el: 'body',//插入到哪个元素里面
+//     data:"",//数据
+
+//     //计算属性的集合方法，引用的时候只要用{{massage1}}即可，不需要像methods里面的方法一样后面添加（）来执行
+//     computed:{
+//         massage1:function(){
+
+//         },
+//         message2{
+//             get:function(){},//默认的get方法
+//             set:function(){}//默认没有set方法，这里自己定义了set方法
+//         }
+//     },
+
+//     //computed是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行
+//     //而且调用methods内的方法得自己调用，即funcA（），而computed方法调用的时候不需要添加括号，vue自己会处理执行
+//     methods:{
+//         funcA:function(){
+
+//         }
+//     },
+//     components: { Table },//包含的组件
+//     store: storeInfo.store,//对应的store
+// });
+
+// vue组件使用（重点）
+// 定义：
+//     全局组件：Vue.component(组件名称, options)
+//     局部组件：new Vue({
+//                   el: '#app',
+//                   components: {
+//                     // runoob是组件名称
+//                     'runoob': Child
+//                   }
+//                 })；
+//                 var Child={//组件内容定义方法
+//                   template: '<h1>自定义组件!</h1>'
+//                 }
+// 调用：在html中直接嵌入<组件名称></组件名称>
+
+// 父子组件通信：props，(详见https://cn.vuejs.org/v2/guide/components.html#Prop和https://www.cnblogs.com/wisewrong/p/6266038.html)
+//（注意：props属性可以和data一模一样使用，而且他还有个特殊作用，可以再本组件上，作为属性名，后面可以设置属性值；所以一般子组件接受父组件传递的信息的时候，是通过子组件的 props属性名=“父组件prop属性名||父组件prop属性名.属性”）
+//（父组件props变动导致子组件信息修改，但是反过来不行【会有警告】，子组件想修改父组件的信息，可以通过this.$emit("事件名"，传参)，期中事件名是“父组件的事件名”）
+// 例如：
+// Vue.component('child', {
+//   // 声明 props
+//   // props: ['message'],//可以是简单的数组，也可以是对象
+//   props:{//这里声明的props就是父组件的属性，这样，父组件对应的属性值变了，子组件的props中如何有声明的话，子组件也会变（父组件信息更新，自动更新子组件信息）
+//     // 基础类型检测 （`null` 意思是任何类型都可以）
+//     propA: Number,
+//     // 多种类型
+//     propB: [String, Number],
+//     // 必传且是字符串
+//     propC: {
+//       type: String,
+//       required: true
+//     },
+//     // 数字，有默认值
+//     propD: {
+//       type: Number,
+//       default: 100
+//     },
+//     // 数组／对象的默认值应当由一个工厂函数返回
+//     propE: {
+//       type: Object,
+//       default: function () {
+//         return { message: 'hello' }
+//       }
+//     },
+//     // 自定义验证函数
+//     propF: {
+//       validator: function (value) {
+//         return value > 10
+//       }
+//     }
+//   }
+
+//   // 同样也可以在 vm 实例中像 “this.message” 这样使用,message和上面的propA，propB
+//   template: '<span>{{ message }}</span>'
+// })
+// // 创建根实例
+// new Vue({
+//   el: '#app'
+// })
+
+
+// 每个 Vue 实例都实现了事件接口：使用 $on(eventName) 监听事件；使用 $emit(eventName) 触发事件
+
+
+// 子组件更新信息，如何同步到父组件（通过父组件自定义事件，该自定义事件和子组件对应的mothods事件绑定）
+// 例如：父组件的自定义事件incrementTotal（如果incrementTotal是原生事件，那么在下面的代码需要修改成<button-counter v-on:increment.native="incrementTotal"></button-counter>），
+// 和子组件的increment绑定了，increment方法里面手动写更新父组件对应信息的代码
+// <div id="app">
+//     <div id="counter-event-example">
+//       <p>{{ total }}</p>
+//       <button-counter v-on:increment="incrementTotal"></button-counter>
+//       <button-counter v-on:increment="incrementTotal"></button-counter>
+//     </div>
+// </div>
+ 
+// <script>
+// Vue.component('button-counter', {
+//   template: '<button v-on:click="increment">{{ counter }}</button>',
+//   data: function () {
+//     return {
+//       counter: 0
+//     }
+//   },
+//   methods: {
+//     increment: function () {
+//       this.counter += 1
+//       this.$emit('increment')
+//     }
+//   },
+// })
+// new Vue({
+//   el: '#counter-event-example',
+//   data: {
+//     total: 0
+//   },
+//   methods: {
+//     incrementTotal: function () {
+//       this.total += 1
+//     }
+//   }
+// })
+// </script>
+
+
+

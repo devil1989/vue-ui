@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<div id="nav-wrapper"></div>
+
+		<!-- 具体内容 -->
+		<div :class="className">
+			<h2>{{title}}</h2>
+			<p style="border:1px solid #000;" @click="clickPage" >点击修改用户名</p>
+			<ul>
+				<li><span>first name：</span><span>{{firstName}}</span></li>
+				<li><span>last name：</span><span>{{lastName}}</span></li>
+				<li><span>full name：</span><span>{{fullName}}</span></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

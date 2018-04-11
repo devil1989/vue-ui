@@ -1,0 +1,43 @@
+<div class="table-wrapper" v-if="hasInit&&data.formatedInfo.length">
+    <div>本组织名称</div>
+    <div class="table-list-detail">
+        <ul>
+            <li class="table-attr-name">
+                <div class="list-user-sname"><span>用户名</span></div>
+                <div class="list-user-name"><span>姓名</span></div>
+                <div class="list-user-classid"><span>系统角色</span></div>
+            </li>
+            
+            <li v-for="item in data.formatedInfo[data.pagination.currentPageIndex-1].pageContent">
+                <div class="list-user-sname"><span>{{item.userCode}}</span></div>
+                <div class="list-user-name"><span>{{item.userName}}</span></div>
+                <div class="list-user-classid text-align-left"><span class="role-detail-info" v-for="role in item.roles">{{role.roleName}}</span></div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 页码 -->
+    <div class="table-list-extra">
+        <div class="table-list-extra-desc"><span>共{{ data.pagination.pageNum }}页,共{{data.pagination.totalCount}}条</span></div>
+        <div class="table-list-extra-info" v-on:click="jumptopage" >
+            <div class="table-list-page-num">
+                <span class="page-prev page-direction js_confirm_btn js_prev_page" :data-num="parseInt(data.pagination.currentPageIndex)-1">上一页</span>
+                <ul >
+                    <li v-for="pageItem in data.formatedInfo" :class="{'current-page-index':pageItem.isCurrent,'ismouse-hover':pageItem.noHover,'js_jump_to_page':pageItem.jumpClass }" v-if="pageItem.isShow" ><span>{{pageItem.txt}}</span></li>
+                </ul>
+                <span class="page-next page-direction js_confirm_btn js_next_page" :data-num="parseInt(data.pagination.currentPageIndex)+1">下一页</span>
+            </div>
+                
+            <div class="table-list-extra-jump">
+                <span >跳到</span>
+                <input class="table-list-detail-page" type="text" v-model="data.pagination.jumpNum">
+                <span>页</span>
+                <span class="table-list-confirm js_confirm_btn" :data-num="data.pagination.jumpNum">确定</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-wrapper" v-else="" style="text-align: center;border:1px solid #000;padding: 0.5rem;">
+    表格数据下发为空
+</div>

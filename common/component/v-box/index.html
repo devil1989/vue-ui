@@ -1,0 +1,12 @@
+<!-- title -->
+<div v-if="options.display!=='destroy'" :class="[options.className,(options.display==='hide')?'ui-hide':'']">
+
+	<!-- children,如果是字符串就直接作为innerHTML -->
+	<div v-if="typeof options.children==='string' " class="ui-box" v-html="options.children"></div>
+	<div v-else class="ui-box" >
+		<div v-for="childComponent,idx in options.children" :class="childComponent.className||childComponent.name">
+			<!-- 动态组件 -->
+			<component v-bind:is="childComponent.name" :options="childComponent" ref="childComponent.name"></component>
+		</div>
+	</div>
+</div>

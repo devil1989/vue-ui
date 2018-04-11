@@ -1,0 +1,28 @@
+
+<div v-if="options.display!=='destroy'" :class="['ui-pop-wrapper',options.className,(options.display==='hide')?'ui-hide':'']">
+	<div :class="['ui-pop-shadow', (options.display==='hide')?'ui-hide':'' ]"></div>
+	<div class="ui-pop-alert" ><!-- hide的class，后面的变量不能有Hide的驼峰命名 -->
+		<div class="ui-pop-alert-inner">
+
+			<!-- children,如果是字符串就直接作为innerHTML,这里包含了title组件和内部自定义组件 -->
+			<div v-if="typeof options.children==='string' " class="ui-pop-content" v-html="options.children">
+				<!-- 这个盒子里面放弹框拓展内容，因为弹框内容多种多样，所有具体的弹框得继承这个,js_extend_content是作为标记 -->
+			</div>
+			<div v-else class="ui-pop-content" >
+				<div v-for="childComponent,idx in options.children" :class="childComponent.className||childComponent.name">
+					<!-- 动态组件 -->
+					<component v-bind:is="childComponent.name" ref="childComponent.name" :options="childComponent" ></component>
+				</div>
+			</div>
+
+
+			<!-- btns -->
+			<div class="ui-pop-btns-wrap">
+				<div v-if="options.v_btns" class="ui-pop-btns-inner">
+						<span v-for="btn,idx in options.v_btns" :class="{'ui-pop-btns':true,'ui-pop-btns-submit':btn.type=='submit'}" @click="clickBtn(idx)">{{btn.txt}}
+						</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
