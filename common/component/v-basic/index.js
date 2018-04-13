@@ -60,39 +60,37 @@ let Basic = {
     //拓展方法，Basic的props.options和methods作为默认值赋给其他组件
     extend:function(component){
         component.methods=Object.assign(this.methods,component.methods);
-        component.init=this.init;
-        component.initChildren=this.initChildren;
         component.props.options=Object.assign(this.props.options,component.props.options);
     },
 
-    //把内部所有组件对象都注册为全局组件（ Vue.component），同时返回传入的那个componentObj
-    init:function(componentObj,noneOutPut){
-        // var children=componentObj.children;
-        // var len=(Object.prototype.toString.call(children)=="[object Array]")?children.length:0;
-        var component=Vue.component(componentObj.name||(+new Date()),componentObj);//默认是自定义的名称
-        // debugger
-        // if(children&&len){
-        //     for (var i = 0; i < len; i++) {
-        //         this.init(children[i],true);//递归调用
-        //     }
-        // }
+    // //把内部所有组件对象都注册为全局组件（ Vue.component），同时返回传入的那个componentObj
+    // init:function(componentObj,noneOutPut){
+    //     // var children=componentObj.children;
+    //     // var len=(Object.prototype.toString.call(children)=="[object Array]")?children.length:0;
+    //     var component=Vue.component(componentObj.name||(+new Date()),componentObj);//默认是自定义的名称
+    //     // debugger
+    //     // if(children&&len){
+    //     //     for (var i = 0; i < len; i++) {
+    //     //         this.init(children[i],true);//递归调用
+    //     //     }
+    //     // }
 
-        // if(!noneOutPut){
-            return componentObj;
-        // }
-    },
+    //     // if(!noneOutPut){
+    //         return componentObj;
+    //     // }
+    // },
 
-    //初始化所有子组件
-    initChildren:function(children){
-        var len=children.length;
+    // //初始化所有子组件
+    // initChildren:function(children){
+    //     var len=children.length;
 
-        //unfinish,需要根据name相同做匹配
-        for (var i = 0; i < len; i++) {
-            Things[i]
-        }
-        var title=Vue.component(this.$props.options.children[],Title);//title组件需要自定义
-        var box=Vue.component(Box.props.options.name,Box);//box组件自定义
-    }
+    //     //unfinish,需要根据name相同做匹配
+    //     for (var i = 0; i < len; i++) {
+    //         Things[i]
+    //     }
+    //     var title=Vue.component(this.$props.options.children[],Title);//title组件需要自定义
+    //     var box=Vue.component(Box.props.options.name,Box);//box组件自定义
+    // }
         
 };
 export default Basic

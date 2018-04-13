@@ -25,6 +25,14 @@
 
     jeffreyUI组件概念：组件可分为块组件和行内组件，块组件有inner属性，可以内嵌子组件【具体样式得自己调整】（目前做法是，行内组件添加了inner，会自动忽略inner属性）
 
+    //vue挂载（vue实例和vue组件区别）
+    vue实例挂载到原生DOM，用el，（最核心的方法就是vm.$mount(原生DOM||css筛选器)）
+    vue实例挂载到vue组件，用vm.$mount（可以动态挂载到vue组件上去,在组件beforeCreate函数中执行这个挂载），或者slot+slot-scope（详见https://cn.vuejs.org/v2/guide/components.html#%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BD）
+    vue组件挂载到原生DOM，用el或者compuments（核心同上）
+    vue组件挂载到vue组件中：用components或者直接用is动态组件（核心同上）
+    原生DOM无法挂载到原生DOM，原生DOM就没有挂载方法，就是DOM的插入和删除元素等DOM方法
+
+    vue组件继承用extends属性，或者用mixins也可以，推荐extends
 
   */
 import Common from "../v-basic" ;
@@ -41,7 +49,7 @@ let Pop = {
     },
 
     //依赖data数据中的基本属性的符合属性，它们有data里面的基本属性组合而成，其中一个变了，他所在的组合属性自动会更新，重新渲染dom，和data类似
-    computed：{
+    computed:{
         //computed内部属性和data内部属性不能同名重复，可以把computed最为一个data的子类来理解，有data的所有功能，同时还有任意data属性变动导致computed属性自动更新的功能
     },
 
@@ -57,7 +65,14 @@ let Pop = {
         }
     },
 
-    //props和data，computed中的属性一样，可以在模板中直接使用，同时更新的时候，对应的dom会更新
+    /*props和data，computed中的属性一样，可以在模板中直接使用，同时更新的时候，对应的dom会更新
+      props,data,和computed中的属性不能相互重复，因为他们都可以在模板中直接使用
+      watch的属性可以是data和props或者computed中的属性，任何属性修改，会先执行watch中的对应属性函数
+
+      props：自己和子组件都用到的属性，修改后，自己和子组件都会改变，他可以实现父组件>>子组件的单向数据流，支持类型检测
+      data：只有自己用到的属性，修改后自己会改变,vm.属性==vm.$data.属性
+      computed：处理单个或者多个data属性组合，data内属性改变会导致computed属性自动更新
+     */
     //props传递给子组件，父组件props更新的时候，子组件也会更新
     //（vue默认是单向数据流：每次父组件更新时，子组件的所有 prop都会更新为最新值，子组件props不应该修改，而是通过修改父组件的props）
     // 核心概念：父子组件之间的信息传递以及props作用，非props属性作用
@@ -133,3 +148,13 @@ export default Pop
 
 
 // 在设计组合使用的组件时，内容分发 API 是非常有用的机制。
+
+//is组件（动态组件），内部组件，全局组件，异步组件，递归组件（暂时不看），组件循环引用（需要用到全局组件+is动态组件），这些概念要理解
+//mixins（把原始对象混入到组件中，也可以全局混入） slot
+
+// 异步组件，
+// Vue.component(
+//   'async-webpack-example',
+//   // 该 `import` 函数返回一个 `Promise` 对象。
+//   () => import('./my-async-component')
+// )

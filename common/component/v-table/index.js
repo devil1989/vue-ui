@@ -1,5 +1,6 @@
-require("./table.scss");
-var templates=require("./table.html");
+import otable from "v-origin-table";
+require("./index.scss");
+var templates=require("./index.html");
 export default {
     template:templates,
     data:function(){//template中获取的是这个数据

@@ -1,0 +1,91 @@
+.table-list-extra{
+    overflow: hidden;
+    width: 100%;
+    height: 2rem;
+    line-height: 2rem;
+    margin-top: 0.5rem;
+}
+.table-list-extra-desc{
+    float: left;
+}
+.table-list-extra-info{
+    overflow: hidden;
+    float: right;
+    position: relative;
+}
+.table-list-extra-info,{
+    overflow: hidden;
+    float: left;
+}
+.table-list-page-num{
+    overflow: hidden;
+    float: left;
+}
+.table-list-extra-jump{
+    overflow: hidden;
+    float: left;
+}
+.table-list-page-num ul{
+    overflow: hidden;
+}
+.table-list-page-num ul li{
+    text-align: center;
+    border: 1px solid #E4E4E4;
+    border-left: none;
+    float: left;
+    height: 1.2rem;
+    /*padding:0.3rem;*/
+    width: 1.2rem;
+    line-height: 1.2rem;
+    margin-top: 0.4rem;
+    color: #6B98AB;
+    cursor: pointer;
+}
+.table-list-page-num ul li.current-page-index{
+    background: #e3e3e3;
+    cursor: default;
+}
+.table-list-detail-page{
+    height: 1rem;
+    width: 2rem;
+    line-height: 1rem;
+    text-align: center;
+}
+.table-list-page-num .page-prev,.table-list-page-num ul,.table-list-page-num .page-next{
+    float: left;
+}
+.page-direction{
+    padding:0rem 0.6rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    margin: 0.4rem 0rem 0rem;
+    border:1px solid #E4E4E4;
+    color: #6B98AB;
+    cursor:pointer;
+}
+.page-prev{
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+}
+.page-next{
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    border-left: none;
+}
+.table-list-extra-jump{
+    margin-left: 0.5rem;
+}
+.table-list-extra-jump span{
+    margin: 0 0.2rem;
+}
+.current-page-index{
+    background-color: #F2F2F2;
+    color: #868686;
+}
+.table-list-confirm{
+    color: #6B98AB;
+    border:1px solid #E4E4E4;
+    border-radius: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+}

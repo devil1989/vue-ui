@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>test</title>
+  <style type="text/css">
+  	th.hide {
+  		/*display:none;*/
+  	}
+  </style>
 </head>
 <body>
-  <div id="app">
+  <!-- <div id="app">
     <Titles :options="pop"></Titles>
-  </div>
+  </div> -->
 
   <div id="app-box">
-    <Box :options="pop"></Box>
+    <otable :options="table"></otable>
+    <pagination :options="pagination"  ></pagination>
   </div>
   
 </body>

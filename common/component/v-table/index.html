@@ -1,20 +1,8 @@
-<div class="table-wrapper" v-if="hasInit&&data.formatedInfo.length">
-    <div>本组织名称</div>
-    <div class="table-list-detail">
-        <ul>
-            <li class="table-attr-name">
-                <div class="list-user-sname"><span>用户名</span></div>
-                <div class="list-user-name"><span>姓名</span></div>
-                <div class="list-user-classid"><span>系统角色</span></div>
-            </li>
-            
-            <li v-for="item in data.formatedInfo[data.pagination.currentPageIndex-1].pageContent">
-                <div class="list-user-sname"><span>{{item.userCode}}</span></div>
-                <div class="list-user-name"><span>{{item.userName}}</span></div>
-                <div class="list-user-classid text-align-left"><span class="role-detail-info" v-for="role in item.roles">{{role.roleName}}</span></div>
-            </li>
-        </ul>
-    </div>
+<div class="table-wrapper" >
+    <otable :options="options.otable"></otable>
+    <page-list :options></page-list>
+
+
 
     <!-- 页码 -->
     <div class="table-list-extra">
@@ -36,8 +24,4 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="table-wrapper" v-else="" style="text-align: center;border:1px solid #000;padding: 0.5rem;">
-    表格数据下发为空
 </div>
