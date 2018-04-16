@@ -10,19 +10,29 @@ export default {
     },
     props:{
         "options":{
-    		totalCount:100,//总几条 *
-        	totalPageNum:1,//共几页 *
-        	currentPageIndex:1,//当前第几页 *
-        	jumpNum:1,//跳转到第几页（跳转输入框内的值） 
-        	switchPage:function(totalPageNum){//跳转到对应页面
+        	default:function(){
+        		return {
+		    		totalCount:100,//总几条 *
+		        	totalPageNum:1,//共几页 *
+		        	currentPageIndex:1,//当前第几页 *
+		        	jumpNum:1,//跳转到第几页（跳转输入框内的值） 
+		        	switchPage:function(totalPageNum){//跳转到对应页面
+		        	}
+		        }
         	}
         }
+		        
     },
 
     watch:{
-    	//监控props中的options.currentPageIndex属性
+    	//监控props中的options.currentPageIndex属性,当前页码变化，整个界面也变化
     	"options.currentPageIndex":function(val,oldVal){
     		this.updatePageArray(val);
+    	},
+
+    	//总页码变化，整个界面也变化
+    	"options.totalPageNum":function(){
+    		this.updatePageArray(this.options.currentPageIndex);
     	}
     },
 
@@ -36,22 +46,22 @@ export default {
 
 
     methods:{
-        jumptopage:function(targetPageNum){
+        jumptopage:function(e,targetPageNum,originPageNum){
         	if(typeof targetPageNum==="number" &&targetPageNum<=this.options.totalPageNum&&targetPageNum>0){
         		this.options.currentPageIndex=targetPageNum;
-	        	this.options.switchPage&&this.options.switchPage(targetPageNum);//执行传入的回调函数，跳转到对应页面
+	        	this.options.switchPage&&this.options.switchPage.bind(this)(e,targetPageNum,originPageNum);//执行传入的回调函数，跳转到对应页面
         	}
 	        	
         },
 
         //根据传入的currentPageIndex，来获取新的pageArray，更新页面
-        updatePageArray:function(val){
+        updatePageArray:function(idx){
         	this.pageArray.splice(0,this.pageArray.length);//清空数组
     		var displayLen=3;//当前页前后共展示3个可跳转页面;最开始和最后只展示1个页码
     		var pageArray=[];
     		var startIndex=1;
     		var totalPageNum=this.options.totalPageNum;
-    		var currentPageIndex=val;
+    		var currentPageIndex=idx;
     		if(currentPageIndex>(startIndex+2)&&currentPageIndex<(totalPageNum-2)){//
     			pageArray=[1,"...",currentPageIndex-1,currentPageIndex,currentPageIndex+1,"...",totalPageNum];
     		}else if(currentPageIndex>(startIndex+2)){
@@ -66,6 +76,9 @@ export default {
     			pageArray.reverse();
     		}
     		this.pageArray=this.pageArray.concat(pageArray);
+        },
+        updateView:function(opts){
+        	this.$props.options=Object.assign(this.$props.options,opts);
         }
     }
 };

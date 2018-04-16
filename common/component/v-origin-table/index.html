@@ -1,29 +1,35 @@
-<div :class="[options.className,'ui-table-wrapper']" v-if="!(options.hide||!options.rows||!options.rows.length)">
-    <table class="ui-table">
-        <thead>
-        <tr v-for="row, row_index in options.rows" :class="[options.setRowClass(row, row_index)]" v-if="(row_index==0)&&(options.displayRow?options.displayRow(row,row_index):true)">
-            
-            <!-- th和下面的td的模板一模一样 -->
-            <th v-for="column, column_index in row" :class="[options.setColumnClass(column, column_index)]" v-if="options.displayColumn?options.displayColumn(column, column_index):true" :data-index="column_index" :data-key="column.key" @click="sort(column,column_index)">
-                <componnent v-if="(typeof column.value=='object')&&(!!column.value.type)" is="column.value.type" :options="column.value.options"></componnent>
-                <template v-else >
-                    {{ column.value }}
-                </template>
-            </th>
-        </tr>
-        </thead>
+<div v-if="!ajaxFinish"></div>
 
-        <tbody>
-        <tr v-for="row, row_index in options.rows" :class="[options.setRowClass(row, row_index)]" v-if="(row_index!=0)&&(options.displayRow?options.displayRow(row,row_index):true)" >
+<div v-else-if="ajaxState">数据请求失败</div>
 
-            <!-- td和上面的th的模板一模一样 -->
-            <td v-for="column, column_index in row" :class="[options.setColumnClass(column, column_index)]" v-if="options.displayColumn?options.displayColumn(column, column_index):true" :data-index="column_index" :data-key="column.key">
-                <componnent v-if="(typeof column.value=='object')&&(!!column.value.type)" is="column.value.type" :options="column.value.options"></componnent>
-                <template v-else >
-                    {{ column.value }}
-                </template>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div v-else>
+    <div v-if="!(options.hide||!rows||!rows.length)" :class="[options.className,'ui-table-wrapper']" >
+        <table class="ui-table">
+            <thead>
+            <tr v-for="row, row_index in rows" :class="[options.setRowClass(row, row_index)]" v-if="(row_index==0)&&(options.displayRow?options.displayRow(row,row_index):true)">
+                
+                <!-- th和下面的td的模板一模一样 -->
+                <th v-for="column, column_index in row" :class="[options.setColumnClass(column, column_index)]" v-if="options.displayColumn?options.displayColumn(column, column_index):true" :data-index="column_index" :data-key="column.key" @click="sortTable(column,column_index)">
+                    <componnent v-if="(typeof column.value=='object')&&(!!column.value.type)" is="column.value.type" :options="column.value.options"></componnent>
+                    <template v-else >
+                        {{ column.value }}
+                    </template>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr v-for="row, row_index in rows" :class="[options.setRowClass(row, row_index)]" v-if="(row_index!=0)&&(options.displayRow?options.displayRow(row,row_index):true)" >
+
+                <!-- td和上面的th的模板一模一样 -->
+                <td v-for="column, column_index in row" :class="[options.setColumnClass(column, column_index)]" v-if="options.displayColumn?options.displayColumn(column, column_index):true" :data-index="column_index" :data-key="column.key">
+                    <componnent v-if="(typeof column.value=='object')&&(!!column.value.type)" is="column.value.type" :options="column.value.options"></componnent>
+                    <template v-else >
+                        {{ column.value }}
+                    </template>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -69,18 +69,18 @@ let table=new Vue({
                     return true;
                 },
 
-                setRowClass:function(row, row_index){
+                setRowClass:function(row, row_index){//设置特定行class
                     return "jef"
                 },
 
-                setColumnClass:function(column, column_index){
+                setColumnClass:function(column, column_index){//设置列class
                     return "dev"
                 },  
 
-                beforeSort:function(){
+                beforeSort:function(){//点击排序前
 
                 },
-                afterSort:function(){
+                afterSort:function(){//点击排序操作以后
 
                 },
 
@@ -128,16 +128,18 @@ let table=new Vue({
                     }]
                 ]
             },
-            pagination:{
-                totalCount:"100",
+            pagination:{//如果属性要用到，哪怕暂时不用后续用到，也要给个初始值
                 totalPageNum:10,//共几页 *
-                currentPageIndex:5//当前第几页 *
+                currentPageIndex:5,//当前第几页 *
+                switchPage:function(e,currentIndex,originIndex){//事件,跳转目标页面序号,原来页面序号
+                }
             }
         }
     },
     beforeCreate:function(){
     }
-
 });
+
+// table.$refs.pagination.updateView({totalPageNum:20})
 
 export default {}
